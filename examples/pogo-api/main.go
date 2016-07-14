@@ -1,11 +1,24 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"strings"
 
 	"github.com/montanaflynn/is-pokemon-go-online"
 )
+
+var port string
+
+func init() {
+	if len(os.Args) > 1 {
+		port = os.Args[1]
+	} else {
+		port = ":8080"
+	}
+}
 
 func handler(w http.ResponseWriter, req *http.Request) {
 	status, err := pogo.CheckStatus()
@@ -20,5 +33,6 @@ func handler(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":4444", nil))
+	port = fmt.Sprintf(":%s", strings.Trim(port, ":"))
+	log.Fatal(http.ListenAndServe(port, nil))
 }
