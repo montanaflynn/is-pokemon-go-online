@@ -34,7 +34,7 @@ chmod +x pogo-api
 ./pogo-api :4444
 ```
 
-There's also have a docker image, if you're into that:
+There's also a [Dockerfile](https://github.com/montanaflynn/is-pokemon-go-online/blob/master/examples/pogo-api/Dockerfile), if you're into that kind of thing:
 
 ```
 git clone github.com/montanaflynn/is-pokemon-go-online
